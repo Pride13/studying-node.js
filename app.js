@@ -1,14 +1,18 @@
-let fs = require('fs');
-let createFunction = require('./functions');
-let createPhoto = require('./Photo');
+const fs = require('fs');
+
+const createFunction = require('./functions');
+
+const createPhoto = require('./Photo');
 
 fs.mkdir('./jscx-1800', err => {
+
    if (!err) {
        console.log('Good');
    }
 });
 
 fs.mkdir('./jscx-2000', err => {
+
     if (!err) {
         console.log('Very Good');
     }
