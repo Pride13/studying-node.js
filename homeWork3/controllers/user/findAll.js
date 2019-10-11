@@ -1,3 +1,5 @@
 module.exports = (req, res) => {
-    res.json(users)
+    const usersFind = req.usersFind;
+
+    res.json(usersFind)
 };

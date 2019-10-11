@@ -24,7 +24,7 @@ const { users, house } = require('./middleware');
 //users
 app.get('/', renderPage.homePage);
 app.get('/registrations', renderPage.registrations);
-app.get('/users', user.findAll);
+app.get('/users', users.findAllUsersMiddleware, user.findAll);
 app.post('/somebody', users.checkUserValidation, user.createUser);
 app.get('/login', renderPage.login);
 app.post('/auth', users.isUserAuthPresent, user.authUser);
@@ -34,7 +34,7 @@ app.post('/updateUsers', users.checkUpdateUserValidation, users.isUpdateUserPres
 
 //flat
 app.get('/apartaments', renderPage.apartaments);
-app.get('/apartments', flat.findAllFlat);
+app.get('/apartments', house.findAllFlatsMiddleware ,flat.findAllFlat);
 app.post('/apartments', house.checkFlatValidation, flat.createFlat);
 app.get('/apartments/:apartment_id', house.isFlatPresent, flat.getFlatById);
 app.get('/updateFlatPages', renderPage.updateFlatPages);
