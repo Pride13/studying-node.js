@@ -3,7 +3,7 @@ const registrations = require('./registrations');
 const login = require('./login');
 const apartament = require('./apartament');
 const notFound = require('./notFound');
-const updateUserPage = require('./updateUserPage');
+const updateUserPages = require('./updateUserPages');
 const updateFlatPage = require('./updateFlatPage');
 
 module.exports = {
@@ -12,6 +12,6 @@ module.exports = {
     login,
     apartament,
     notFound,
-    updateUserPage,
+    updateUserPages,
     updateFlatPage
 };

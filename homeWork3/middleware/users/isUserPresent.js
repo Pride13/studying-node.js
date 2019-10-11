@@ -1,9 +1,10 @@
-const {provider} = require('../../dataBase');
+const { provider } = require('../../dataBase');
 
 module.exports = async(req,res,next) => {
   try {
       const {user_id} = req.params;
       const query = `select * from user where id = ${user_id}`;
+
       const [isUserPresent] = await provider.promise().query(query);
 
       if (!isUserPresent.length) {

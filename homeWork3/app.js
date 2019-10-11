@@ -29,7 +29,7 @@ app.post('/somebody', users.checkUserValidation, user.createUser);
 app.get('/login', renderPage.login);
 app.post('/auth', users.isUserAuthPresent, user.authUser);
 app.get('/users/:user_id', users.isUserPresent, user.getById);
-app.get('/updateUserPage', renderPage.updateUserPage);
+app.get('/updateUserPages', renderPage.updateUserPages);
 app.post('/updateUser', users.checkUpdateUserValidation, users.isUpdateUserPresent, user.updateUsers);
 
 //flat
