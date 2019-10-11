@@ -6,5 +6,5 @@ module.exports = async (req, res) => {
 
     await provider.promise().query(query, [city, street, square, price]);
 
-    res.render('updateFlat')
+    res.render('updateFlats')
 };

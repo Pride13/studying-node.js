@@ -1,3 +1,3 @@
 module.exports = (req, res) => {
-  res.render('updateUser')
+  res.render('updateUsers')
 };

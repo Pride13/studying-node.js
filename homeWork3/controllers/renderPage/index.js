@@ -1,17 +1,17 @@
 const homePage = require('./homePage');
 const registrations = require('./registrations');
 const login = require('./login');
-const apartament = require('./apartament');
+const apartaments = require('./apartaments');
 const notFound = require('./notFound');
 const updateUserPages = require('./updateUserPages');
-const updateFlatPage = require('./updateFlatPage');
+const updateFlatPages = require('./updateFlatPages');
 
 module.exports = {
     homePage,
     registrations,
     login,
-    apartament,
+    apartaments,
     notFound,
     updateUserPages,
-    updateFlatPage
+    updateFlatPages
 };

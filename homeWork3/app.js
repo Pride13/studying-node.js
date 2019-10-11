@@ -30,15 +30,15 @@ app.get('/login', renderPage.login);
 app.post('/auth', users.isUserAuthPresent, user.authUser);
 app.get('/users/:user_id', users.isUserPresent, user.getById);
 app.get('/updateUserPages', renderPage.updateUserPages);
-app.post('/updateUser', users.checkUpdateUserValidation, users.isUpdateUserPresent, user.updateUsers);
+app.post('/updateUsers', users.checkUpdateUserValidation, users.isUpdateUserPresent, user.updateUsers);
 
 //flat
-app.get('/apartament', renderPage.apartament);
+app.get('/apartaments', renderPage.apartaments);
 app.get('/apartments', flat.findAllFlat);
-app.post('/apartment', house.checkFlatValidation, flat.createFlat);
+app.post('/apartments', house.checkFlatValidation, flat.createFlat);
 app.get('/apartments/:apartment_id', house.isFlatPresent, flat.getFlatById);
-app.get('/updateFlatPage', renderPage.updateFlatPage);
-app.post('/updateFlat', house.checkUpdateFlatValidation, house.isUpdateFlatPresent, flat.updateFlats);
+app.get('/updateFlatPages', renderPage.updateFlatPages);
+app.post('/updateFlats', house.checkUpdateFlatValidation, house.isUpdateFlatPresent, flat.updateFlats);
 
 app.all('*', renderPage.notFound);
 

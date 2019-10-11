@@ -6,5 +6,5 @@ module.exports = async (req, res) => {
 
     await provider.promise().query(query, [email, name, password]);
 
-    res.render('updateUser')
+    res.render('updateUsers')
 };
