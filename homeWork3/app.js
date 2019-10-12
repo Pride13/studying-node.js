@@ -37,7 +37,6 @@ app.get('/users/:user_id', users.isUserPresent, user.getById);
 app.post('/updateUsers', users.checkUpdateUserValidation, users.isUpdateUserPresent, user.updateUsers);
 
 //flat
-
 app.get('/apartments', house.findAllFlatsMiddleware ,flat.findAllFlat);
 app.post('/apartments', house.checkFlatValidation, flat.createFlat);
 app.get('/apartments/:apartment_id', house.isFlatPresent, flat.getFlatById);
