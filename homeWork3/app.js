@@ -31,7 +31,7 @@ app.get('/updateFlatPages', renderPage.updateFlatPages);
 
 //users
 app.get('/users', users.findAllUsersMiddleware, user.findAll);
-app.post('/users', users.checkUserValidation, user.createUser);
+app.post('/users', users.checkUserValidation, user.registerUser);
 app.post('/auth', users.isUserAuthPresent, user.authUser);
 app.get('/users/:user_id', users.isUserPresent, user.getById);
 app.post('/updateUsers', users.checkUpdateUserValidation, users.isUpdateUserPresent, user.updateUsers);
