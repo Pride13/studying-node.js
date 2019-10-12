@@ -21,23 +21,26 @@ const { user, flat, renderPage } = require('./controllers');
 const { provider } = require('./dataBase');
 const { users, house } = require('./middleware');
 
-//users
+//renderPage
 app.get('/', renderPage.homePage);
 app.get('/registrations', renderPage.registrations);
-app.get('/users', users.findAllUsersMiddleware, user.findAll);
-app.post('/somebody', users.checkUserValidation, user.createUser);
 app.get('/login', renderPage.login);
+app.get('/updateUserPages', renderPage.updateUserPages);
+app.get('/apartaments', renderPage.apartaments);
+app.get('/updateFlatPages', renderPage.updateFlatPages);
+
+//users
+app.get('/users', users.findAllUsersMiddleware, user.findAll);
+app.post('/users', users.checkUserValidation, user.createUser);
 app.post('/auth', users.isUserAuthPresent, user.authUser);
 app.get('/users/:user_id', users.isUserPresent, user.getById);
-app.get('/updateUserPages', renderPage.updateUserPages);
 app.post('/updateUsers', users.checkUpdateUserValidation, users.isUpdateUserPresent, user.updateUsers);
 
 //flat
-app.get('/apartaments', renderPage.apartaments);
+
 app.get('/apartments', house.findAllFlatsMiddleware ,flat.findAllFlat);
 app.post('/apartments', house.checkFlatValidation, flat.createFlat);
 app.get('/apartments/:apartment_id', house.isFlatPresent, flat.getFlatById);
-app.get('/updateFlatPages', renderPage.updateFlatPages);
 app.post('/updateFlats', house.checkUpdateFlatValidation, house.isUpdateFlatPresent, flat.updateFlats);
 
 app.all('*', renderPage.notFound);
