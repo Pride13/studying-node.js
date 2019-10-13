@@ -3,6 +3,8 @@ const expHbs = require('express-handlebars');
 const path = require('path');
 
 const app = express();
+const dataBase = require('./dataBase').getInstance();
+dataBase.setModels();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -17,20 +19,14 @@ app.engine('.hbs', expHbs({
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'static'));
 
-const { user, flat,  renderPage } = require('./controllers');
-const { users, house } = require('./middleware');
-const { provider } = require('./dataBase');
-const { userRouter, authRouter, flatRouter } = require('./router');
+const { user, renderPage } = require('./controllers');
+const { users } = require('./middleware');
+const { userRouter, flatRouter } = require('./router');
 
 app.use('/users', userRouter);
-app.use('/auth', authRouter);
 app.use('/apartments', flatRouter);
 
-//users
-app.post('/updateUsers', users.checkUpdateUserValidation, users.isUpdateUserPresent, user.updateUsers);
-
-//houses
-app.post('/updateFlats', house.checkUpdateFlatValidation, house.isUpdateFlatPresent, flat.updateFlats);
+app.post('/auth', users.isUserAuthPresent, user.authUser);
 
 //renderPage
 app.get('/', renderPage.homePage);

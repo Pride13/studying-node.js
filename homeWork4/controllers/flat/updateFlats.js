@@ -2,12 +2,13 @@ const { provider } = require('../../dataBase');
 
 module.exports = async (req, res) => {
     try {
-        const { id, city, street, square, price } = req.body;
-        const query = `UPDATE house SET city = ?, street = ?, square = ?, price = ? WHERE id = ${id}`;
+        const {  city, street, square, price } = req.body;
+        const { apartment_id } = req.params;
+        const query = `UPDATE house SET city = ?, street = ?, square = ?, price = ? WHERE id = ?`;
 
-        await provider.promise().query(query, [city, street, square, price]);
+        await provider.promise().query(query, [city, street, square, price, apartment_id]);
 
-        res.render('updateFlats')
+        res.redirect(`/apartments/${apartment_id}`)
     } catch (e) {
         res.json(e.message);
     }
