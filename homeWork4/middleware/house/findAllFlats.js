@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
         const findAllFlat = await FlatModel.findAll();
 
         if (!findAllFlat) {
-            throw new Error('There are no houses')
+            throw new Error(`There are no houses with ${id} like this`)
         }
 
         req.houses = findAllFlat;

@@ -1,11 +1,5 @@
 const dataBase = require('../../dataBase').getInstance();
 
-// module.exports = (req, res) => {
-//     const houses = req.houses;
-//
-//     res.json(houses)
-// };
-
 module.exports = async (req, res) => {
     try {
         const HouseModel = dataBase.getModel('House');
