@@ -1,17 +1,23 @@
-const { provider } = require('../../dataBase');
+const dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        const query = `SELECT * FROM user WHERE email = '${email}' AND password = '${password}'`;
+        const UserModel = dataBase.getModel('User');
 
-        const [isUserAuthPresent]= await provider.promise().query(query);
+        const userAuth = await UserModel.findOne({
+            where: {
+                email,
+                password
+            },
+            attributes: ['id', 'name', 'email']
+        });
 
-        if (!isUserAuthPresent.length) {
+        if (!userAuth) {
             throw new Error(`${email} doesnt exist or incorrectly entered data. Please check`)
         }
 
-        req.email = email;
+        req.user = userAuth.dataValues;
 
         next();
     } catch (e) {

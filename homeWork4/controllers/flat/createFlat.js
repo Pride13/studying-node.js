@@ -1,13 +1,13 @@
-const { provider } = require('../../dataBase');
+const dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
-        const { square, city, price, street } = req.body;
-        const query = `insert into house(square, city, price, street) values (?, ?, ?, ?)`;
+        const FlatToCreate = req.body;
+        const FlatModel = dataBase.getModel('House')
 
-        await provider.promise().query(query, [square, city, price, street]);
+        await FlatModel.create(FlatToCreate);
 
-        res.render('apartament')
+        res.json(FlatToCreate)
     } catch (e) {
         res.json(e.message);
     }

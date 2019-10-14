@@ -1,17 +1,19 @@
-const { provider } = require('../../database');
+const dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res, next) => {
     try {
-        const query = `SELECT * FROM user`;
+        const { id } = req.params;
+        const UserModel = dataBase.getModel('User');
 
-        const [findAll] = await provider.promise().query(query);
+        const findAllMiddleWr = await UserModel.findAll();
 
-        if (!findAll.length) {
-            throw new Error('There is no user')
+        if (!findAllMiddleWr) {
+            throw new Error(`User with ID ${id} is not present`)
         }
 
-        req.usersFind = findAll;
-        next();
+        req.user = findAllMiddleWr;
+
+        next()
     } catch (e) {
         res.status(400).json(e.message)
     }

@@ -1,8 +1,5 @@
-const { provider } = require('../../dataBase');
+module.exports = (req, res) => {
+    const user = req.user;
 
-module.exports = async (req, res) => {
-
-    const email = req.email;
-
-    res.json(`Congratulations, ${email}`);
+    res.json(user)
 };

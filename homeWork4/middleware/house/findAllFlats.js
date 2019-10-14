@@ -1,11 +1,13 @@
-const { provider } = require('../../dataBase');
+const dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res, next) => {
     try {
-        const query = `SELECT * FROM house`;
-        const [findAllFlat] = await provider.promise().query(query);
+        const { id } = req.params;
+        const FlatModel = dataBase.getModel('House');
 
-        if (!findAllFlat.length) {
+        const findAllFlat = await FlatModel.findAll();
+
+        if (!findAllFlat) {
             throw new Error('There are no houses')
         }
 

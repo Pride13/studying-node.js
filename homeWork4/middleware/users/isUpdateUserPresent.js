@@ -1,18 +1,20 @@
-const { provider } = require('../../dataBase');
-
-module.exports = async (req, res, next) => {
-    try {
-        const {id} = req.body;
-        const query =  `select * from user where id = ${id}`;
-
-        const [isUserPresent] = await provider.promise().query(query);
-
-        if (!isUserPresent.length) {
-            throw new Error(`User with ID ${id} is not present`)
-        }
-
-        next()
-    } catch (e) {
-        res.status(400).json(e.message)
-    }
-};
+// const dataBase = require('../../dataBase').getInstance();
+//
+// module.exports = async (req, res, next) => {
+//     try {
+//         const {user_id} = req.params;
+//         const UserModels = dataBase.getModel('User');
+//
+//         const isUserPresent = await UserModels.findByPk(user_id);
+//
+//         if (!isUserPresent) {
+//             throw new Error(`User with ID ${user_id} is not present`)
+//         }
+//
+//         req.user = isUserPresent;
+//
+//         next()
+//     } catch (e) {
+//         res.status(400).json(e.message)
+//     }
+// };
