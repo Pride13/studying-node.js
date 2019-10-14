@@ -1,12 +1,16 @@
-const { provider } = require('../../dataBase');
+const dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
-        const {  city, street, square, price } = req.body;
+        const patchFlatObject = req.body;
         const { apartment_id } = req.params;
-        const query = `UPDATE house SET city = ?, street = ?, square = ?, price = ? WHERE id = ?`;
+        const FlatModel = dataBase.getModel('House');
 
-        await provider.promise().query(query, [city, street, square, price, apartment_id]);
+        await FlatModel.update(patchFlatObject, {
+            where: {
+                id: apartment_id
+            }
+        });
 
         res.redirect(`/apartments/${apartment_id}`)
     } catch (e) {
