@@ -19,14 +19,12 @@ app.engine('.hbs', expHbs({
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'static'));
 
-const { user, renderPage } = require('./controllers');
-const { users } = require('./middleware');
-const { userRouter, flatRouter } = require('./router');
+const { renderPage } = require('./controllers');
+const { userRouter, flatRouter, authRouter } = require('./router');
 
 app.use('/users', userRouter);
 app.use('/apartments', flatRouter);
-
-app.post('/auth', users.isUserAuthPresent, user.authUser);
+app.use('/auth', authRouter);
 
 //renderPage
 app.get('/', renderPage.homePage);
