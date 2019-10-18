@@ -2,11 +2,11 @@ const {userService} = require('../../service');
 
 module.exports = async (req, res) => {
     try {
-        const userToCreate = req.body;
+        const { user_id } = req.params;
 
-        await userService.registerUserService(userToCreate);
+        await userService.deleteUserByParams({id: user_id});
 
-        res.render('login')
+        res.json('Ok, you are delete')
     } catch (e) {
         res.json(e.message);
     }
