@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
         const patchFlatObject = req.body;
         const { apartment_id } = req.params;
 
-        await houseService.updateFlatByParams({id: apartment_id}, patchFlatObject);
+        await houseService.updateFlatByParams(patchFlatObject, apartment_id);
 
         res.redirect(`/apartments/${apartment_id}`)
     } catch (e) {

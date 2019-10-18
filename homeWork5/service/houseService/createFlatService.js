@@ -5,5 +5,5 @@ module.exports = async (FlatToCreate)=> {
 
     const createFlat = await FlatModel.create(FlatToCreate);
 
-    return createFlat;
+    return createFlat && createFlat.dataValues;
 };
