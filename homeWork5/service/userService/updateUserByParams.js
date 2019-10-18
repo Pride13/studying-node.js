@@ -7,3 +7,4 @@ module.exports = async (whereObject, updateObject) => {
         where: whereObject
     })
 };
+

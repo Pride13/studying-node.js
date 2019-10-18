@@ -1,15 +1,19 @@
 const { tokenVerificator } = require('../helpers');
 
 module.exports = (req, res, next) => {
-    const token = req.get('Authorization');
+    try {
+        const token = req.get('Authorization');
 
-    if (!token) {
-        next(new Error('NO TOKEN'))
+        if (!token) {
+            next(new Error('NO TOKEN'))
+        }
+
+        const userFromToken = tokenVerificator(token);
+
+        req.user = userFromToken;
+
+        next();
+    } catch (e) {
+        res.status(403).json(e.message)
     }
-
-    const userFromToken = tokenVerificator(token);
-
-    req.user = userFromToken;
-
-    next();
 };
