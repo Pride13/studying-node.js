@@ -1,11 +1,15 @@
 const express = require('express');
 const expHbs = require('express-handlebars');
 const path = require('path');
+const fileUpload = require('express-fileupload');
+
 
 const app = express();
 const dataBase = require('./dataBase').getInstance();
 dataBase.setModels();
+global.appRoot = __dirname;
 
+app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
